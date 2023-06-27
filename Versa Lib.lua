@@ -1727,7 +1727,7 @@ function library:CreateWindow(name, size, hidebutton)
                     slider.callback = callback or function(value) end
                     slider.min = min or 0
                     slider.max = max or 100
-                    slider.decimals = decimals or 1
+                    slider.decimals = decimals or 0
                     slider.default = default or slider.min
                     slider.flag = flag or ( (toggle.text or "") .. tostring(#toggle.Items:GetChildren()))
     
