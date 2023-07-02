@@ -112,7 +112,7 @@ Library v0.36 [
                         (boolean | nil) Rich/RichText/RichTextBox = true or false
                         (boolean | nil) Lines/MultiLine = true or false
                         (boolean | nil) Scaled/TextScaled = true or false
-                        (EnumItem | nil) Font/TextFont = Enum.Font.Sarpanch
+                        (EnumItem | nil) Font/TextFont = Enum.Font.Code
                         (function | nil) PreFormat = Function (Value)
                         (function | nil) PostFormat = Function (Value)
                         (table | nil) CustomProperties = Properties [
@@ -237,7 +237,7 @@ Library v0.36 [
                         (table | Instance | Enum | function) List = Table | workspace | Enum.Font | Function () -> New List
                         (string | function | table | nil) Filter = "StringToMatch" | Function (ValueToCheck) | Table [
                             (boolean | nil) [0] = InverseBool
-                            (any) [1] ... = "StringToMatch" | Enum.Font.Sarpanch/ValuesToMatch
+                            (any) [1] ... = "StringToMatch" | Enum.Font.Code/ValuesToMatch
                         ]
                         (string | function | table | nil) Method = "GetDescendants" | workspace.GetDescendants | Parameters [
                         	(string | function) [1/Method] = "GetFriendsOnline" | Player.GetFriendsOnline
@@ -289,7 +289,7 @@ Library v0.36 [
                         (table | Instance | Enum | function) List = Table | workspace | Enum.Font | Function () -> New List
                         (string | function | table | nil) Filter = "StringToMatch" | Function (ValueToCheck) | Table [
                             (boolean | nil) [0] = InverseBool
-                            (string | any | nil) [1] ... = "StringToMatch" | Enum.Font.Sarpanch
+                            (string | any | nil) [1] ... = "StringToMatch" | Enum.Font.Code
                         ]
                         (string | function | table | nil) Method = "GetDescendants" | workspace.GetDescendants | Parameters [
                         	(string | function) [1/Method] = "GetFriendsOnline" | Player.GetFriendsOnline
@@ -1296,8 +1296,8 @@ do
 			Text.AnchorPoint = Vector2.new(0.5, 0.5)
 			Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			Text.BackgroundTransparency = 1
-			Text.Font = Enum.Font.Sarpanch
-			Text.FontSize = Enum.FontSize.Size14
+			Text.Font = Enum.Font.Code
+			Text.FontSize = Enum.FontSize.Size12
 			Text.Name = "Text"
 			Text.Parent = Border_2
 			Text.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -1310,7 +1310,7 @@ do
 			Button.BackgroundTransparency = 1
 			Button.BorderSizePixel = 0
 			Button.Font = Enum.Font.SourceSans
-			Button.FontSize = Enum.FontSize.Size14
+			Button.FontSize = Enum.FontSize.Size12
 			Button.Name = "Button"
 			Button.Parent = Option
 			Button.Size = UDim2.new(1, 0, 1, 0)
@@ -1536,7 +1536,7 @@ do
 				Splitter.Size = UDim2.new(1, 0, 0, 1)
 				Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Title.BackgroundTransparency = 1
-				Title.Font = Enum.Font.Sarpanch
+				Title.Font = Enum.Font.Code
 				Title.FontSize = Enum.FontSize.Size18
 				Title.Parent = InnerBorder
 				Title.Position = UDim2.new(0, 6, 0, 4)
@@ -1548,8 +1548,8 @@ do
 				Title.TextXAlignment = Enum.TextXAlignment.Left
 				Description.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				Description.BackgroundTransparency = 1
-				Description.Font = Enum.Font.Sarpanch
-				Description.FontSize = Enum.FontSize.Size14
+				Description.Font = Enum.Font.Code
+				Description.FontSize = Enum.FontSize.Size12
 				Description.Name = "Description"
 				Description.Parent = InnerBorder
 				Description.Position = UDim2.new(0, 6, 0, 25)
@@ -1847,8 +1847,8 @@ do
 			Border_2.Size = UDim2.new(1, 0, 1, 0)
 			Text.AnchorPoint = Vector2.new(0, 0.5)
 			Text.BackgroundTransparency = 1
-			Text.Font = Enum.Font.Sarpanch
-			Text.FontSize = Enum.FontSize.Size14
+			Text.Font = Enum.Font.Code
+			Text.FontSize = Enum.FontSize.Size12
 			Text.Name = "Text"
 			Text.Parent = Border_2
 			Text.Position = UDim2.new(0, 8, 0.5, 0)
@@ -2108,7 +2108,7 @@ function library:CreateWindow(options, ...)
 	headline.BackgroundColor3 = Color3.new(1, 1, 1)
 	headline.BackgroundTransparency = 1
 	headline.LayoutOrder = 1
-	headline.Font = Enum.Font.Sarpanch
+	headline.Font = Enum.Font.Code
 	headline.Text = (windowName and tostring(windowName)) or "???"
 	headline.TextColor3 = library.colors.main
 	colored[1 + #colored] = {headline, "TextColor3", "main"}
@@ -2123,7 +2123,7 @@ function library:CreateWindow(options, ...)
 	splitter.BackgroundTransparency = 1
 	splitter.LayoutOrder = 2
 	splitter.Size = UDim2:new(6, 1)
-	splitter.Font = Enum.Font.Sarpanch
+	splitter.Font = Enum.Font.Code
 	splitter.Text = "|"
 	splitter.TextColor3 = library.colors.tabText
 	colored[1 + #colored] = {splitter, "TextColor3", "tabText"}
@@ -2217,7 +2217,7 @@ function library:CreateWindow(options, ...)
 		else
 			colored_newTab_TextColor3 = {newTab, "TextColor3", "tabText"}
 			colored[1 + #colored] = colored_newTab_TextColor3
-			newTab.Font = Enum.Font.Sarpanch
+			newTab.Font = Enum.Font.Code
 			newTab.Text = (tabName and tostring(tabName)) or "???"
 			if windowFunctions.tabCount ~= 1 then
 				colored_newTab_TextColor3[4] = 1.35
@@ -2384,7 +2384,7 @@ function library:CreateWindow(options, ...)
 			sectionHeadline.BackgroundTransparency = 1
 			sectionHeadline.Position = UDim2.fromOffset(18, -8)
 			sectionHeadline.ZIndex = 2
-			sectionHeadline.Font = Enum.Font.Sarpanch
+			sectionHeadline.Font = Enum.Font.Code
 			sectionHeadline.LineHeight = 1.15
 			sectionHeadline.Text = (sectionName and sectionName or "???")
 			sectionHeadline.TextColor3 = library.colors.section
@@ -2508,7 +2508,7 @@ function library:CreateWindow(options, ...)
 				toggleHeadline.BackgroundTransparency = 1
 				toggleHeadline.Position = UDim2.fromScale(0.123, 0.165842161)
 				toggleHeadline.Size = UDim2.fromOffset(170, 11)
-				toggleHeadline.Font = Enum.Font.Sarpanch
+				toggleHeadline.Font = Enum.Font.Code
 				toggleHeadline.Text = toggleName or "???"
 				toggleHeadline.TextColor3 = library.colors.elementText
 				local colored_toggleHeadline_TextColor3 = {toggleHeadline, "TextColor3", "elementText", (lockedup and 0.5) or nil}
@@ -2602,7 +2602,7 @@ function library:CreateWindow(options, ...)
 					keybindButton.Position = UDim2.fromScale(0.598130822, 0.184210524)
 					keybindButton.Selectable = false
 					keybindButton.Size = UDim2.fromOffset(46, 12)
-					keybindButton.Font = Enum.Font.Sarpanch
+					keybindButton.Font = Enum.Font.Code
 					keybindButton.Text = keyName or (presetKeybind and tostring(presetKeybind):gsub("Enum.KeyCode.", "")) or "[NONE]"
 					keybindButton.TextColor3 = library.colors.otherElementText
 					local colored_keybindButton_TextColor3 = {keybindButton, "TextColor3", "otherElementText"}
@@ -3066,7 +3066,7 @@ function library:CreateWindow(options, ...)
 					realButton.BackgroundTransparency = 1
 					realButton.Size = UDim2.fromScale(1, 1)
 					realButton.ZIndex = 5
-					realButton.Font = Enum.Font.Sarpanch
+					realButton.Font = Enum.Font.Code
 					realButton.Text = (buttonName and tostring(buttonName)) or "???"
 					realButton.TextColor3 = library.colors.elementText
 					local colored_realButton_TextColor3 = {realButton, "TextColor3", "elementText"}
@@ -3430,7 +3430,7 @@ function library:CreateWindow(options, ...)
 				realTextbox.Position = UDim2.new(0.0295485705)
 				realTextbox.Size = UDim2.fromScale(0.97, 1)
 				realTextbox.ZIndex = 5
-				realTextbox.Font = Enum.Font.Sarpanch
+				realTextbox.Font = Enum.Font.Code
 				realTextbox.LineHeight = 1.15
 				realTextbox.Text = tostring(presetValue)
 				realTextbox.TextColor3 = library.colors.otherElementText
@@ -3463,7 +3463,7 @@ function library:CreateWindow(options, ...)
 				textboxHeadline.Selectable = true
 				textboxHeadline.Size = UDim2.fromOffset(206, 20)
 				textboxHeadline.ZIndex = 5
-				textboxHeadline.Font = Enum.Font.Sarpanch
+				textboxHeadline.Font = Enum.Font.Code
 				textboxHeadline.LineHeight = 1.15
 				textboxHeadline.Text = (textboxName and tostring(textboxName)) or "???"
 				textboxHeadline.TextColor3 = library.colors.elementText
@@ -3656,7 +3656,7 @@ function library:CreateWindow(options, ...)
 				keybindHeadline.BackgroundTransparency = 1
 				keybindHeadline.Position = UDim2.fromScale(0.031, 0.165842161)
 				keybindHeadline.Size = UDim2.fromOffset(215, 12)
-				keybindHeadline.Font = Enum.Font.Sarpanch
+				keybindHeadline.Font = Enum.Font.Code
 				keybindHeadline.Text = (keybindName and tostring(keybindName)) or "???"
 				keybindHeadline.TextColor3 = library.colors.elementText
 				colored[1 + #colored] = {keybindHeadline, "TextColor3", "elementText"}
@@ -3682,7 +3682,7 @@ function library:CreateWindow(options, ...)
 				keybindButton.Position = UDim2.fromScale(0.598130822, 0.184210524)
 				keybindButton.Selectable = false
 				keybindButton.Size = UDim2.fromOffset(46, 12)
-				keybindButton.Font = Enum.Font.Sarpanch
+				keybindButton.Font = Enum.Font.Code
 				keybindButton.Text = (presetKeybind and tostring(presetKeybind):gsub("Enum.KeyCode.", "") or "[NONE]")
 				keybindButton.TextColor3 = library.colors.otherElementText
 				local colored_keybindButton_TextColor3 = {keybindButton, "TextColor3", "otherElementText"}
@@ -3927,7 +3927,7 @@ function library:CreateWindow(options, ...)
 				labelHeadline.BackgroundTransparency = 1
 				labelHeadline.Position = UDim2.fromScale(0.031, 0.165842161)
 				labelHeadline.Size = UDim2.fromOffset(215, 12)
-				labelHeadline.Font = Enum.Font.Sarpanch
+				labelHeadline.Font = Enum.Font.Code
 				labelHeadline.Text = (labelName and tostring(labelName)) or "Empty Text"
 				labelHeadline.TextColor3 = library.colors.elementText
 				colored[1 + #colored] = {labelHeadline, "TextColor3", "elementText"}
@@ -4083,7 +4083,7 @@ function library:CreateWindow(options, ...)
 				sliderHeadline.Selectable = true
 				sliderHeadline.Size = UDim2.fromOffset(206, 20)
 				sliderHeadline.ZIndex = 5
-				sliderHeadline.Font = Enum.Font.Sarpanch
+				sliderHeadline.Font = Enum.Font.Code
 				sliderHeadline.LineHeight = 1.15
 				sliderHeadline.Text = resolvedisplay(startingValue)
 				sliderHeadline.TextColor3 = library.colors.elementText
@@ -4170,7 +4170,7 @@ function library:CreateWindow(options, ...)
 					realTextbox.Size = UDim2.fromScale(0.97, 1)
 					realTextbox.ZIndex = 5
 					realTextbox.ClearTextOnFocus = false
-					realTextbox.Font = Enum.Font.Sarpanch
+					realTextbox.Font = Enum.Font.Code
 					realTextbox.LineHeight = 1.15
 					realTextbox.Text = tostring(presetValue)
 					realTextbox.TextColor3 = library.colors.otherElementText
@@ -4490,7 +4490,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Position = UDim2.new(0.0295485705)
 				dropdownSelection.Size = UDim2.fromScale(0.85, 1)
 				dropdownSelection.ZIndex = 5
-				dropdownSelection.Font = Enum.Font.Sarpanch
+				dropdownSelection.Font = Enum.Font.Code
 				dropdownSelection.LineHeight = 1.15
 				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
@@ -4504,7 +4504,7 @@ function library:CreateWindow(options, ...)
 				dropdownHeadline.BackgroundTransparency = 1
 				dropdownHeadline.Position = UDim2.fromScale(0.034, 0.03)
 				dropdownHeadline.Size = UDim2.fromOffset(167, 11)
-				dropdownHeadline.Font = Enum.Font.Sarpanch
+				dropdownHeadline.Font = Enum.Font.Code
 				dropdownHeadline.Text = (dropdownName and tostring(dropdownName)) or "???"
 				dropdownHeadline.TextColor3 = library.colors.elementText
 				colored[1 + #colored] = {dropdownHeadline, "TextColor3", "elementText"}
@@ -4687,7 +4687,7 @@ function library:CreateWindow(options, ...)
 							optionButton.Selectable = true
 							optionButton.Size = UDim2.new(1, -10, 1)
 							optionButton.ZIndex = 5
-							optionButton.Font = Enum.Font.Sarpanch
+							optionButton.Font = Enum.Font.Code
 							optionButton.Text = (togged and (" " .. stringed)) or stringed
 							optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
 							optionButton.TextSize = 14
@@ -5245,7 +5245,7 @@ function library:CreateWindow(options, ...)
 					dropdownSelection.Position = UDim2.new(0.0295485705)
 					dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 					dropdownSelection.ZIndex = 5
-					dropdownSelection.Font = Enum.Font.Sarpanch
+					dropdownSelection.Font = Enum.Font.Code
 					dropdownSelection.LineHeight = 1.15
 					dropdownSelection.Text = (selectedOption and tostring(selectedOption)) or "nil"
 					dropdownSelection.TextColor3 = library.colors.otherElementText
@@ -5258,7 +5258,7 @@ function library:CreateWindow(options, ...)
 					dropdownHeadline.BackgroundTransparency = 1
 					dropdownHeadline.Position = UDim2.fromScale(0.034, 0.03)
 					dropdownHeadline.Size = UDim2.fromOffset(167, 11)
-					dropdownHeadline.Font = Enum.Font.Sarpanch
+					dropdownHeadline.Font = Enum.Font.Code
 					dropdownHeadline.Text = (dropdownName and tostring(dropdownName)) or "???"
 					dropdownHeadline.TextColor3 = library.colors.elementText
 					colored[1 + #colored] = {dropdownHeadline, "TextColor3", "elementText"}
@@ -5397,7 +5397,7 @@ function library:CreateWindow(options, ...)
 								optionButton.Position = UDim2.fromScale(0.5, 0.5)
 								optionButton.Size = UDim2.new(1, -10, 1)
 								optionButton.ZIndex = 5
-								optionButton.Font = Enum.Font.Sarpanch
+								optionButton.Font = Enum.Font.Code
 								optionButton.Text = (selectedOption == v and " " .. tostring(v)) or tostring(v)
 								optionButton.TextColor3 = (selectedOption == v and library.colors.main or library.colors.otherElementText)
 								optionButton.TextSize = 14
@@ -5761,7 +5761,7 @@ function library:CreateWindow(options, ...)
 							realButton.BackgroundTransparency = 1
 							realButton.Size = UDim2.fromScale(1, 1)
 							realButton.ZIndex = 5
-							realButton.Font = Enum.Font.Sarpanch
+							realButton.Font = Enum.Font.Code
 							realButton.Text = (buttonName and tostring(buttonName)) or "???"
 							realButton.TextColor3 = library.colors.elementText
 							colored[1 + #colored] = {realButton, "TextColor3", "elementText"}
@@ -6063,7 +6063,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Selectable = true
 				dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 				dropdownSelection.ZIndex = 5
-				dropdownSelection.Font = Enum.Font.Sarpanch
+				dropdownSelection.Font = Enum.Font.Code
 				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
@@ -6075,7 +6075,7 @@ function library:CreateWindow(options, ...)
 				dropdownHeadline.BackgroundTransparency = 1
 				dropdownHeadline.Position = UDim2.fromScale(0.034, 0.03)
 				dropdownHeadline.Size = UDim2.fromOffset(167, 11)
-				dropdownHeadline.Font = Enum.Font.Sarpanch
+				dropdownHeadline.Font = Enum.Font.Code
 				dropdownHeadline.Text = (dropdownName and tostring(dropdownName)) or "???"
 				dropdownHeadline.TextColor3 = library.colors.elementText
 				colored[1 + #colored] = {dropdownHeadline, "TextColor3", "elementText"}
@@ -6317,7 +6317,7 @@ function library:CreateWindow(options, ...)
 						optionButton.Position = UDim2.fromScale(0.5, 0.5)
 						optionButton.Size = UDim2.new(1, -10, 1)
 						optionButton.ZIndex = 5
-						optionButton.Font = Enum.Font.Sarpanch
+						optionButton.Font = Enum.Font.Code
 						optionButton.Text = (togged and (" " .. stringed)) or stringed
 						optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
 						optionButton.TextSize = 14
@@ -6762,7 +6762,7 @@ function library:CreateWindow(options, ...)
 				colorPickerHeadline.BackgroundTransparency = 1
 				colorPickerHeadline.Position = UDim2.fromScale(0.034, 0.113)
 				colorPickerHeadline.Size = UDim2.fromOffset(173, 11)
-				colorPickerHeadline.Font = Enum.Font.Sarpanch
+				colorPickerHeadline.Font = Enum.Font.Code
 				colorPickerHeadline.Text = colorPickerName or "???"
 				colorPickerHeadline.TextColor3 = library.colors.elementText
 				colored[1 + #colored] = {colorPickerHeadline, "TextColor3", "elementText"}
@@ -6933,7 +6933,7 @@ function library:CreateWindow(options, ...)
 				hexInputBox.BackgroundTransparency = 1
 				hexInputBox.Size = UDim2.fromScale(1, 1)
 				hexInputBox.ZIndex = 5
-				hexInputBox.Font = Enum.Font.Sarpanch
+				hexInputBox.Font = Enum.Font.Code
 				hexInputBox.PlaceholderText = "Hex Input"
 				hexInputBox.Text = Color3ToHex(startingColor)
 				hexInputBox.TextColor3 = library.colors.elementText
