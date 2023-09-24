@@ -462,7 +462,7 @@ Library v0.36 [
 ]]
 local library = {
 	Version = "0.36",
-	WorkspaceName = "VXRSA",
+	WorkspaceName = "Pepsi Lib",
 	flags = {},
 	signals = {},
 	objects = {},
@@ -627,28 +627,28 @@ local function resolveid(image, flag)
 								end
 							end)
 							codename = string.sub(codename, 1, 24) .. tostring(fixes)
-							local fold = isfolder("./VXRSA")
+							local fold = isfolder("./Pepsi Lib")
 							if fold then
 							else
-								makefolder("./VXRSA")
+								makefolder("./Pepsi Lib")
 							end
-							fold = isfolder("./VXRSA/Themes")
+							fold = isfolder("./Pepsi Lib/Themes")
 							if fold then
 							else
-								makefolder("./VXRSA/Themes")
+								makefolder("./Pepsi Lib/Themes")
 							end
-							fold = isfolder("./VXRSA/Themes/SynapseAssetsCache")
+							fold = isfolder("./Pepsi Lib/Themes/SynapseAssetsCache")
 							if fold then
 							else
-								makefolder("./VXRSA Themes/SynapseAssetsCache")
+								makefolder("./Pepsi Lib Themes/SynapseAssetsCache")
 							end
-							if not fold or not isfile("./VXRSA/Themes/SynapseAssetsCache/" .. codename .. ".dat") then
+							if not fold or not isfile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat") then
 								local res = game:HttpGet(string.sub(image, 15))
 								if res ~= nil then
-									writefile("./VXRSA/Themes/SynapseAssetsCache/" .. codename .. ".dat", res)
+									writefile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat", res)
 								end
 							end
-							return getsynasset(readfile("./VXRSA/Themes/SynapseAssetsCache/" .. codename .. ".dat"))
+							return getsynasset(readfile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat"))
 						end)
 						if x and e ~= nil then
 							return e
@@ -2002,8 +2002,8 @@ function library:CreateWindow(options, ...)
 	local windowoptions = options
 	local windowName = options.Name or "Unnamed Window"
 	options.Name = windowName
-	if windowName and #windowName > 0 and library.WorkspaceName == "VXRSA" then
-		library.WorkspaceName = convertfilename(windowName, "VXRSA")
+	if windowName and #windowName > 0 and library.WorkspaceName == "Pepsi Lib" then
+		library.WorkspaceName = convertfilename(windowName, "Pepsi Lib")
 	end
 	local pepsiLibrary = Instance_new("ScreenGui")
 	library.MainScreenGui, MainScreenGui = pepsiLibrary, pepsiLibrary
@@ -5157,14 +5157,14 @@ function library:CreateWindow(options, ...)
 					local realDropdownHolder = Instance_new("ScrollingFrame")
 					local realDropdownHolderList = Instance_new("UIListLayout")
 					local dropdownEnabled = false
-					if not isfolder("./VXRSA") then
-						makefolder("./VXRSA")
+					if not isfolder("./Pepsi Lib") then
+						makefolder("./Pepsi Lib")
 					end
-					local common_string = "./VXRSA/" .. tostring(custom_workspace or library.WorkspaceName)
+					local common_string = "./Pepsi Lib/" .. tostring(custom_workspace or library.WorkspaceName)
 					local function resolvelist(nofold)
 						if custom_workspace ~= options.Workspace then
 							custom_workspace = options.Workspace
-							common_string = "./VXRSA/" .. tostring(custom_workspace or library.WorkspaceName)
+							common_string = "./Pepsi Lib/" .. tostring(custom_workspace or library.WorkspaceName)
 						end
 						if not isfolder or not makefolder or not listfiles then
 							return {}
@@ -7379,7 +7379,7 @@ function library:CreateWindow(options, ...)
 		}}, {"AddPersistence", "__Designer.Persistence.ThemeFile", filessection, {
 			Name = "Theme Profile",
 			Flag = "__Designer.Files.ThemeFile",
-			Workspace = "VXRSA Themes",
+			Workspace = "Pepsi Lib Themes",
 			Flags = flags,
 			Suffix = "Theme",
 			Desginer = true
