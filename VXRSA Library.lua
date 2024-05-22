@@ -2390,6 +2390,7 @@ function library:CreateWindow(options, ...)
 			sectionHeadline.TextColor3 = library.colors.section
 			colored[1 + #colored] = {sectionHeadline, "TextColor3", "section"}
 			sectionHeadline.TextSize = 14
+			sectionHeadline.TextXAlignment = Enum.TextXAlignment.Center
 			sectionHeadline.Size = UDim2.fromOffset(textToSize(sectionHeadline).X + 4, 12)
 			insideBorderHider.Name = "insideBorderHider"
 			insideBorderHider.Parent = newSection
