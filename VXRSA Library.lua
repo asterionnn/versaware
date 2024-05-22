@@ -2398,7 +2398,7 @@ function library:CreateWindow(options, ...)
 			insideBorderHider.BackgroundColor3 = library.colors.sectionBackground
 			colored[1 + #colored] = {insideBorderHider, "BackgroundColor3", "sectionBackground"}
 			insideBorderHider.BorderSizePixel = 0
-			insideBorderHider.Position = UDim2.fromScale(0.5,-0.043)
+			insideBorderHider.Position = UDim2.fromScale(0.5,0)
 			insideBorderHider.AnchorPoint = Vector2.new(0.5,0)
 			insideBorderHider.Size = UDim2.fromOffset(sectionHeadline.AbsoluteSize.X + 3, 1)
 			outsideBorderHider.Name = "outsideBorderHider"
