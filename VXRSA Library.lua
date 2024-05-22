@@ -2382,7 +2382,7 @@ function library:CreateWindow(options, ...)
 			sectionHeadline.Parent = newSection
 			sectionHeadline.BackgroundColor3 = Color3.new(1, 1, 1)
 			sectionHeadline.BackgroundTransparency = 1
-			sectionHeadline.Position = UDim2.fromOffset(18, -8)
+			sectionHeadline.Position = UDim2.fromScale(0.2)
 			sectionHeadline.ZIndex = 2
 			sectionHeadline.Font = Enum.Font.Code
 			sectionHeadline.LineHeight = 1.15
@@ -2397,14 +2397,14 @@ function library:CreateWindow(options, ...)
 			insideBorderHider.BackgroundColor3 = library.colors.sectionBackground
 			colored[1 + #colored] = {insideBorderHider, "BackgroundColor3", "sectionBackground"}
 			insideBorderHider.BorderSizePixel = 0
-			insideBorderHider.Position = UDim2.fromOffset(15)
+			insideBorderHider.Position = UDim2.fromOffset(43)
 			insideBorderHider.Size = UDim2.fromOffset(sectionHeadline.AbsoluteSize.X + 3, 1)
 			outsideBorderHider.Name = "outsideBorderHider"
 			outsideBorderHider.Parent = newSection
 			outsideBorderHider.BackgroundColor3 = library.colors.background
 			colored[1 + #colored] = {outsideBorderHider, "BackgroundColor3", "background"}
 			outsideBorderHider.BorderSizePixel = 0
-			outsideBorderHider.Position = UDim2.fromOffset(15, -1)
+			outsideBorderHider.Position = UDim2.fromOffset(43, -1)
 			outsideBorderHider.Size = UDim2.fromOffset(sectionHeadline.AbsoluteSize.X + 3, 1)
 			local sectionFunctions = {
 				Flags = {},
