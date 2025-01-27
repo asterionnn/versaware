@@ -627,28 +627,28 @@ local function resolveid(image, flag)
 								end
 							end)
 							codename = string.sub(codename, 1, 24) .. tostring(fixes)
-							local fold = isfolder("./VXRSA")
+							local fold = isfolder("./Pepsi Lib")
 							if fold then
 							else
-								makefolder("./VXRSA")
+								makefolder("./Pepsi Lib")
 							end
-							fold = isfolder("./VXRSA/Themes")
+							fold = isfolder("./Pepsi Lib/Themes")
 							if fold then
 							else
-								makefolder("./VXRSA/Themes")
+								makefolder("./Pepsi Lib/Themes")
 							end
-							fold = isfolder("./VXRSA/Themes/SynapseAssetsCache")
+							fold = isfolder("./Pepsi Lib/Themes/SynapseAssetsCache")
 							if fold then
 							else
-								makefolder("./VXRSA Themes/SynapseAssetsCache")
+								makefolder("./Pepsi Lib Themes/SynapseAssetsCache")
 							end
-							if not fold or not isfile("./VXRSA/Themes/SynapseAssetsCache/" .. codename .. ".dat") then
+							if not fold or not isfile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat") then
 								local res = game:HttpGet(string.sub(image, 15))
 								if res ~= nil then
-									writefile("./VXRSA/Themes/SynapseAssetsCache/" .. codename .. ".dat", res)
+									writefile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat", res)
 								end
 							end
-							return getsynasset(readfile("./VXRSA/Themes/SynapseAssetsCache/" .. codename .. ".dat"))
+							return getsynasset(readfile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat"))
 						end)
 						if x and e ~= nil then
 							return e
@@ -7383,7 +7383,7 @@ function library:CreateWindow(options, ...)
 		}}, {"AddPersistence", "__Designer.Persistence.ThemeFile", filessection, {
 			Name = "Theme Profile",
 			Flag = "__Designer.Files.ThemeFile",
-			Workspace = "VXRSA Themes",
+			Workspace = "Pepsi Lib Themes",
 			Flags = flags,
 			Suffix = "Theme",
 			Desginer = true
