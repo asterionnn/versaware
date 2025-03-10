@@ -6068,7 +6068,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
+				dropdownSelection.Text = table.concat(selectedObjects, ",") or table.concat(selectedOption, ",") or (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
@@ -6221,7 +6221,7 @@ function library:CreateWindow(options, ...)
 							proceed = 1
 						end
 					end
-					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
+					dropdownSelection.Text = table.concat(selectedObjects, ",") or table.concat(selectedOption, ",") or (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
 					if proceed and callback then
 						task.spawn(callback, selectedOption, cloned)
 					end
@@ -6344,7 +6344,7 @@ function library:CreateWindow(options, ...)
 									newOption.BackgroundColor3 = (togged and library.colors.selectedOption) or library.colors.topGradient
 									newOption.ImageColor3 = (togged and library.colors.unselectedOption) or library.colors.bottomGradient
 									optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
-									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
+									dropdownSelection.Text = table.concat(selectedObjects, ",") or table.concat(selectedOption, ",") or (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
 									if callback then
 										task.spawn(callback, selectedOption, cloned)
 									end
