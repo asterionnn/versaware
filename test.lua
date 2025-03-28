@@ -4457,7 +4457,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
 				dropdownSelection.LineHeight = 1.15
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or tostring(table.concat(selectedOption,",")))) or (selectedOption and tostring(selectedOption)) or blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or tostring(table.concat(selectedOption,",")))) or blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
@@ -6029,7 +6029,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or tostring(table.concat(selectedOption,",")))) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or tostring(table.concat(selectedOption,",")))) or tostring(blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
