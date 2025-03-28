@@ -4733,7 +4733,7 @@ function library:CreateWindow(options, ...)
 											if options.Location then
 												options.Location[options.LocationFlag or flagName] = selectedOption
 											end
-											dropdownSelection.Text = tostring(table.concat(selectedOption,","))
+											dropdownSelection.Text = tostring(selectedOption)
 											if submenuOpen then
 												submenuOpen = nil
 											end
@@ -5399,7 +5399,7 @@ function library:CreateWindow(options, ...)
 										if options.Location then
 											options.Location[options.LocationFlag or flagName] = selectedOption
 										end
-										dropdownSelection.Text = tostring(table.concat(selectedOption,","))
+										dropdownSelection.Text = tostring(selectedOption)
 										if submenuOpen then
 											submenuOpen = nil
 										end
