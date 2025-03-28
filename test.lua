@@ -7268,7 +7268,8 @@ function library:CreateWindow(options, ...)
 			Side = "right"
 		})
 		local detailssection = designer:CreateSection({
-			Name = "More Info"
+			Name = "More Info",
+			Sode = "right"
 		})
 		local settingssection = designer:CreateSection({
 			Name = "Settings",
@@ -7431,7 +7432,6 @@ function library:CreateWindow(options, ...)
 		for _, v in next, daaata do
 			designerelements[v[2]] = v[3][v[1]](v[3], v[4])
 		end
-		designerelements["__Designer.Textbox.WorkspaceName"]:Set(library.WorkspaceName or "Unnamed Workspace")
 		for k, v in next, elements do
 			if v and k and string.sub(k, 1, 11) == "__Designer." and v.Type and v.Type ~= "Persistence" then
 				flags[1 + #flags] = k
