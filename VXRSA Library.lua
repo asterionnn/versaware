@@ -472,7 +472,7 @@ local library = {
 	colored = {},
 	configuration = {
 		hideKeybind = Enum.KeyCode.Period,
-		smoothDragging = false,
+		smoothDragging = true,
 		easingStyle = Enum.EasingStyle.Quart,
 		easingDirection = Enum.EasingDirection.Out
 	},
@@ -539,9 +539,9 @@ library.subs.darkenColor = darkenColor
 local __runscript = true
 local function wait_check(...)
 	if __runscript then
-		return wait(...)
+		return task.wait(...)
 	else
-		wait()
+		task.wait()
 		return false
 	end
 end
@@ -616,45 +616,6 @@ local function resolveid(image, flag)
 		local succezz = pcall(function()
 			local typ = type(image)
 			if typ == "string" then
-				if getsynasset then
-					if #image > 11 and (string.sub(image, 1, 11) == "synasset://") then
-						return getsynasset(string.sub(image, 12))
-					elseif (#image > 14) and (string.sub(image, 1, 14) == "synasseturl://") then
-						local x, e = pcall(function()
-							local codename, fixes = string.gsub(image, ".", function(c)
-								if c:lower() == c:upper() and not tonumber(c) then
-									return ""
-								end
-							end)
-							codename = string.sub(codename, 1, 24) .. tostring(fixes)
-							local fold = isfolder("./Pepsi Lib")
-							if fold then
-							else
-								makefolder("./Pepsi Lib")
-							end
-							fold = isfolder("./Pepsi Lib/Themes")
-							if fold then
-							else
-								makefolder("./Pepsi Lib/Themes")
-							end
-							fold = isfolder("./Pepsi Lib/Themes/SynapseAssetsCache")
-							if fold then
-							else
-								makefolder("./Pepsi Lib Themes/SynapseAssetsCache")
-							end
-							if not fold or not isfile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat") then
-								local res = game:HttpGet(string.sub(image, 15))
-								if res ~= nil then
-									writefile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat", res)
-								end
-							end
-							return getsynasset(readfile("./Pepsi Lib/Themes/SynapseAssetsCache/" .. codename .. ".dat"))
-						end)
-						if x and e ~= nil then
-							return e
-						end
-					end
-				end
 				if (#image < 11) or ((string.sub(image, 1, 13) ~= "rbxassetid://") and (string.sub(image, 1, 11) ~= "rbxasset://") and string.sub(image, 1, 11) ~= "rbxthumb://") then
 					image = tonumber(image:gsub("%D", ""), 10) or image
 					typ = type(image)
@@ -703,13 +664,13 @@ do
 		local RemoveTable = table.remove
 		while wait_check() do
 			while shared.NO_LIB_GC do
-				wait(20)
+				task.wait(20)
 				if wait_check() then
 				else
 					return
 				end
 			end
-			wait(10)
+			task.wait(10)
 			local Breathe = 30
 			for DataIndex = #colored, 1, -1 do
 				if MayGC > 0 then
@@ -938,7 +899,7 @@ local function unloadall()
 			b = b - 1
 			if b < 0 then
 				b = 50
-				wait(warn("Looped 50 times while unloading....?"))
+				task.wait(warn("Looped 50 times while unloading....?"))
 			end
 			local v = shared.libraries[1]
 			if v and v.unload and (type(v.unload) == "function") then
@@ -2721,7 +2682,7 @@ function library:CreateWindow(options, ...)
 					}
 					library.signals[1 + #library.signals] = userInputService.InputBegan:Connect(function(input, chatting)
 						if justBinded then
-							wait(0.1)
+							task.wait(0.1)
 							justBinded = false
 							return
 						elseif lockedup then
@@ -4496,7 +4457,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
 				dropdownSelection.LineHeight = 1.15
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or tostring(table.concat(selectedOption,",")))) or (selectedOption and tostring(selectedOption)) or blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
@@ -4698,7 +4659,7 @@ function library:CreateWindow(options, ...)
 							optionButton.TextXAlignment = Enum.TextXAlignment.Left
 							library.signals[1 + #library.signals] = optionButton[(multiselect and "MouseButton1Click") or "MouseButton1Down"]:Connect(function()
 								if not library.colorpicker then
-									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
+									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
 									restorezindex[newSection] = restorezindex[newSection] or newSection.ZIndex
 									restorezindex[newDropdown] = restorezindex[newDropdown] or newDropdown.ZIndex
 									restorezindex[sectionHolder] = restorezindex[sectionHolder] or sectionHolder.ZIndex
@@ -4772,7 +4733,7 @@ function library:CreateWindow(options, ...)
 											if options.Location then
 												options.Location[options.LocationFlag or flagName] = selectedOption
 											end
-											dropdownSelection.Text = tostring(selectedOption)
+											dropdownSelection.Text = tostring(table.concat(selectedOption,","))
 											if submenuOpen then
 												submenuOpen = nil
 											end
@@ -4931,7 +4892,7 @@ function library:CreateWindow(options, ...)
 							proceed = 1
 						end
 					end
-					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
+					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
 					if proceed and callback then
 						task.spawn(callback, selectedOption, cloned)
 					end
@@ -4988,7 +4949,7 @@ function library:CreateWindow(options, ...)
 				if not multiselect then
 					library.signals[1 + #library.signals] = dropdownSelection.FocusLost:Connect(function(b)
 						if showing then
-							wait()
+							task.wait()
 						end
 						showing = false
 						display(false)
@@ -5438,7 +5399,7 @@ function library:CreateWindow(options, ...)
 										if options.Location then
 											options.Location[options.LocationFlag or flagName] = selectedOption
 										end
-										dropdownSelection.Text = tostring(selectedOption)
+										dropdownSelection.Text = tostring(table.concat(selectedOption,","))
 										if submenuOpen then
 											submenuOpen = nil
 										end
@@ -5584,7 +5545,7 @@ function library:CreateWindow(options, ...)
 					end)
 					library.signals[1 + #library.signals] = dropdownSelection.FocusLost:Connect(function(b)
 						if showing then
-							wait()
+							task.wait()
 						end
 						showing = false
 						display(false)
@@ -6068,7 +6029,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or tostring(table.concat(selectedOption,",")))) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
@@ -6221,7 +6182,7 @@ function library:CreateWindow(options, ...)
 							proceed = 1
 						end
 					end
-					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
+					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
 					if proceed and callback then
 						task.spawn(callback, selectedOption, cloned)
 					end
@@ -6344,7 +6305,7 @@ function library:CreateWindow(options, ...)
 									newOption.BackgroundColor3 = (togged and library.colors.selectedOption) or library.colors.topGradient
 									newOption.ImageColor3 = (togged and library.colors.unselectedOption) or library.colors.bottomGradient
 									optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
-									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or "Select Item(s)")
+									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
 									if callback then
 										task.spawn(callback, selectedOption, cloned)
 									end
@@ -7286,16 +7247,6 @@ function library:CreateWindow(options, ...)
 				end
 			end
 		end
-
-
-
-
-
-
-
-
-
-
 		return tabFunctions
 	end
 	windowFunctions.AddTab = windowFunctions.CreateTab
@@ -7317,11 +7268,8 @@ function library:CreateWindow(options, ...)
 			Side = "right"
 		})
 		local detailssection = designer:CreateSection({
-			Name = "More Info"
-		})
-		local filessection = designer:CreateSection({
-			Name = "Profiles",
-			Side = "right"
+			Name = "More Info",
+			Sode = "right"
 		})
 		local settingssection = designer:CreateSection({
 			Name = "Settings",
@@ -7380,21 +7328,7 @@ function library:CreateWindow(options, ...)
 				Flag = "__Designer.Background.UseBackgroundImage",
 				Value = true,
 				Callback = updatecolorsnotween
-			}}, {"AddPersistence", "__Designer.Persistence.ThemeFile", filessection, {
-				Name = "Theme Profile",
-				Flag = "__Designer.Files.ThemeFile",
-				Workspace = "Pepsi Lib Themes",
-				Flags = flags,
-				Suffix = "Theme",
-				Desginer = true
-			}}, {"AddTextbox", "__Designer.Textbox.WorkspaceName", filessection, {
-				Name = "Workspace Name",
-				Value = library.WorkspaceName or "Unnamed Workspace",
-				Flag = "__Designer.Files.WorkspaceFile",
-				Callback = function(n, o)
-					persistoptions.Workspace = n or o
-				end
-			}}, {"AddPersistence", "__Designer.Persistence.WorkspaceProfile", filessection, persistoptions}, {"AddButton", "__Designer.Button.TerminateGUI", settingssection, {{
+			}}, {"AddButton", "__Designer.Button.TerminateGUI", settingssection, {{
 				Name = "Terminate GUI",
 				Callback = library.unload
 			}, {
@@ -7498,7 +7432,6 @@ function library:CreateWindow(options, ...)
 		for _, v in next, daaata do
 			designerelements[v[2]] = v[3][v[1]](v[3], v[4])
 		end
-		designerelements["__Designer.Textbox.WorkspaceName"]:Set(library.WorkspaceName or "Unnamed Workspace")
 		for k, v in next, elements do
 			if v and k and string.sub(k, 1, 11) == "__Designer." and v.Type and v.Type ~= "Persistence" then
 				flags[1 + #flags] = k
