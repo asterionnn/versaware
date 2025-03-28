@@ -461,7 +461,7 @@ Library v0.36 [
 ]
 ]]
 local library = {
-	Version = "0.36",
+	Version = "1.0",
 	WorkspaceName = "VXRSA",
 	flags = {},
 	signals = {},
@@ -4457,7 +4457,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
 				dropdownSelection.LineHeight = 1.15
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or table.concat(selectedOption))) or (selectedOption and tostring(table.concat(selectedOption))) or blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring((multiselect and (blankstring or table.concat(selectedOption,","))) or (selectedOption and table.concat(selectedOption,",")) or blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
@@ -4659,7 +4659,7 @@ function library:CreateWindow(options, ...)
 							optionButton.TextXAlignment = Enum.TextXAlignment.Left
 							library.signals[1 + #library.signals] = optionButton[(multiselect and "MouseButton1Click") or "MouseButton1Down"]:Connect(function()
 								if not library.colorpicker then
-									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption))
+									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption,","))
 									restorezindex[newSection] = restorezindex[newSection] or newSection.ZIndex
 									restorezindex[newDropdown] = restorezindex[newDropdown] or newDropdown.ZIndex
 									restorezindex[sectionHolder] = restorezindex[sectionHolder] or sectionHolder.ZIndex
@@ -4733,7 +4733,7 @@ function library:CreateWindow(options, ...)
 											if options.Location then
 												options.Location[options.LocationFlag or flagName] = selectedOption
 											end
-											dropdownSelection.Text = tostring(table.concat(selectedOption))
+											dropdownSelection.Text = table.concat(selectedOption,",")
 											if submenuOpen then
 												submenuOpen = nil
 											end
@@ -4892,7 +4892,7 @@ function library:CreateWindow(options, ...)
 							proceed = 1
 						end
 					end
-					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption))
+					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption,","))
 					if proceed and callback then
 						task.spawn(callback, selectedOption, cloned)
 					end
@@ -4910,7 +4910,7 @@ function library:CreateWindow(options, ...)
 					if options.Location then
 						options.Location[options.LocationFlag or flagName] = str
 					end
-					local sstr = (selectedOption and tostring(table.concat(selectedOption))) or blankstring or "No Blank String"
+					local sstr = (selectedOption and table.concat(selectedOption,",")) or blankstring or "No Blank String"
 					if dropdownSelection.Text ~= sstr then
 						dropdownSelection.Text = sstr
 					end
@@ -4962,7 +4962,7 @@ function library:CreateWindow(options, ...)
 				local default = library_flags[flagName]
 				function update()
 					dropdownName, callback = options.Name or dropdownName, options.Callback
-					local sstr = (passed_multiselect == "string" and multiselect) or (not multiselect and library_flags[flagName] and tostring(library_flags[flagName])) or (not multiselect and selectedOption and tostring(table.concat(selectedOption))) or blankstring or "Nothing"
+					local sstr = (passed_multiselect == "string" and multiselect) or (not multiselect and library_flags[flagName] and tostring(library_flags[flagName])) or (not multiselect and selectedOption and table.concat(selectedOption,",")) or blankstring or "Nothing"
 					if dropdownSelection.Text ~= sstr then
 						dropdownSelection.Text = sstr
 					end
@@ -5212,7 +5212,7 @@ function library:CreateWindow(options, ...)
 					dropdownSelection.ZIndex = 5
 					dropdownSelection.Font = Enum.Font.Code
 					dropdownSelection.LineHeight = 1.15
-					dropdownSelection.Text = (selectedOption and tostring(table.concat(selectedOption))) or "nil"
+					dropdownSelection.Text = (selectedOption and table.concat(selectedOption,",")) or "nil"
 					dropdownSelection.TextColor3 = library.colors.otherElementText
 					colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 					dropdownSelection.TextSize = 14
@@ -5399,7 +5399,7 @@ function library:CreateWindow(options, ...)
 										if options.Location then
 											options.Location[options.LocationFlag or flagName] = selectedOption
 										end
-										dropdownSelection.Text = tostring(table.concat(selectedOption))
+										dropdownSelection.Text = table.concat(selectedOption,",")
 										if submenuOpen then
 											submenuOpen = nil
 										end
@@ -5520,7 +5520,7 @@ function library:CreateWindow(options, ...)
 						if options.Location then
 							options.Location[options.LocationFlag or flagName] = str
 						end
-						local sstr = (selectedOption and tostring(table.concat(selectedOption))) or blankstring or "No Blank String"
+						local sstr = (selectedOption and table.concat(selectedOption,",")) or blankstring or "No Blank String"
 						if dropdownSelection.Text ~= sstr then
 							dropdownSelection.Text = sstr
 						end
@@ -6029,7 +6029,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or table.concat(selectedOption))) or (selectedOption and tostring(table.concat(selectedOption))) or tostring(blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or table.concat(selectedOption,","))) or (selectedOption and table.concat(selectedOption,",")) or tostring(blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
@@ -6182,7 +6182,7 @@ function library:CreateWindow(options, ...)
 							proceed = 1
 						end
 					end
-					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption))
+					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption,","))
 					if proceed and callback then
 						task.spawn(callback, selectedOption, cloned)
 					end
@@ -6200,7 +6200,7 @@ function library:CreateWindow(options, ...)
 					if options.Location then
 						options.Location[options.LocationFlag or flagName] = str
 					end
-					local sstr = (selectedOption and tostring(table.concat(selectedOption))) or blankstring or "No Blank String"
+					local sstr = (selectedOption and table.concat(selectedOption,",")) or blankstring or "No Blank String"
 					if dropdownSelection.Text ~= sstr then
 						dropdownSelection.Text = sstr
 					end
@@ -6305,7 +6305,7 @@ function library:CreateWindow(options, ...)
 									newOption.BackgroundColor3 = (togged and library.colors.selectedOption) or library.colors.topGradient
 									newOption.ImageColor3 = (togged and library.colors.unselectedOption) or library.colors.bottomGradient
 									optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
-									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption))
+									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or table.concat(selectedOption,","))
 									if callback then
 										task.spawn(callback, selectedOption, cloned)
 									end
@@ -6510,7 +6510,7 @@ function library:CreateWindow(options, ...)
 				local default = library_flags[flagName]
 				function update()
 					dropdownName, callback = options.Name or dropdownName, options.Callback
-					local sstr = (passed_multiselect == "string" and multiselect) or (library_flags[flagName] and tostring(library_flags[flagName])) or (selectedOption and tostring(table.concat(selectedOption))) or blankstring or "nil"
+					local sstr = (passed_multiselect == "string" and multiselect) or (library_flags[flagName] and tostring(library_flags[flagName])) or (selectedOption and table.concat(selectedOption,",")) or blankstring or "nil"
 					if dropdownSelection.Text ~= sstr then
 						dropdownSelection.Text = sstr
 					end
