@@ -664,13 +664,13 @@ do
 		local RemoveTable = table.remove
 		while wait_check() do
 			while shared.NO_LIB_GC do
-				wait(20)
+				task.wait(20)
 				if wait_check() then
 				else
 					return
 				end
 			end
-			wait(10)
+			task.wait(10)
 			local Breathe = 30
 			for DataIndex = #colored, 1, -1 do
 				if MayGC > 0 then
@@ -899,7 +899,7 @@ local function unloadall()
 			b = b - 1
 			if b < 0 then
 				b = 50
-				wait(warn("Looped 50 times while unloading....?"))
+				task.wait(warn("Looped 50 times while unloading....?"))
 			end
 			local v = shared.libraries[1]
 			if v and v.unload and (type(v.unload) == "function") then
@@ -2682,7 +2682,7 @@ function library:CreateWindow(options, ...)
 					}
 					library.signals[1 + #library.signals] = userInputService.InputBegan:Connect(function(input, chatting)
 						if justBinded then
-							wait(0.1)
+							task.wait(0.1)
 							justBinded = false
 							return
 						elseif lockedup then
@@ -6029,7 +6029,7 @@ function library:CreateWindow(options, ...)
 				dropdownSelection.Size = UDim2.fromScale(0.97, 1)
 				dropdownSelection.ZIndex = 5
 				dropdownSelection.Font = Enum.Font.Code
-				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or "Select Item(s)")) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
+				dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or (multiselect and tostring(blankstring or table.concat(selectedObjects))) or (selectedOption and tostring(selectedOption)) or tostring(blankstring or "No Blank String")
 				dropdownSelection.TextColor3 = library.colors.otherElementText
 				colored[1 + #colored] = {dropdownSelection, "TextColor3", "otherElementText"}
 				dropdownSelection.TextSize = 14
