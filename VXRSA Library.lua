@@ -3754,7 +3754,7 @@ function library:CreateWindow(options, ...)
 				end
 				library.signals[1 + #library.signals] = keybindButton.Activated:Connect(newkey)
 				library.signals[1 + #library.signals] = newKeybind.InputEnded:Connect(function(input)
-					if not library.colorpicker and not submenuOpen and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not library.colorpicker and not submenuOpen and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						newkey()
 					end
 				end)
@@ -4243,19 +4243,19 @@ function library:CreateWindow(options, ...)
 					last_val = sliderValue
 				end
 				library.signals[1 + #library.signals] = newSlider.InputBegan:Connect(function(input)
-					if not library.colorpicker and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not library.colorpicker and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						sliderDragging = true
 						isDraggingSomething = true
 					end
 				end)
 				library.signals[1 + #library.signals] = newSlider.InputEnded:Connect(function(input)
-					if not library.colorpicker and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not library.colorpicker and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						sliderDragging = false
 						isDraggingSomething = false
 					end
 				end)
 				library.signals[1 + #library.signals] = newSlider.InputBegan:Connect(function(input)
-					if not library.colorpicker and not isDraggingSomething and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not library.colorpicker and not isDraggingSomething and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						isDraggingSomething = true
 						sliding(input, sliderInner, sliderColored)
 					end
@@ -6473,7 +6473,7 @@ function library:CreateWindow(options, ...)
 					end
 				end
 				library.signals[1 + #library.signals] = newDropdown.InputEnded:Connect(function(input)
-					if not library.colorpicker and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if not library.colorpicker and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						showing = not showing
 						display(showing)
 					end
@@ -7069,7 +7069,7 @@ function library:CreateWindow(options, ...)
 				colorS = (math.clamp(selectorColor.AbsolutePosition.X - color.AbsolutePosition.X, 0, color.AbsoluteSize.X) / color.AbsoluteSize.X)
 				colorV = 1 - (math.clamp(selectorColor.AbsolutePosition.Y - color.AbsolutePosition.Y, 0, color.AbsoluteSize.Y) / color.AbsoluteSize.Y)
 				library.signals[1 + #library.signals] = color.InputBegan:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						isDraggingSomething = true
 						colorInput = (colorInput and colorInput:Disconnect() and nil) or runService.RenderStepped:Connect(function()
 							local colorX = (math.clamp(mouse.X - color.AbsolutePosition.X, 0, color.AbsoluteSize.X) / color.AbsoluteSize.X)
@@ -7083,7 +7083,7 @@ function library:CreateWindow(options, ...)
 					end
 				end)
 				library.signals[1 + #library.signals] = color.InputEnded:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						if colorInput then
 							isDraggingSomething = false
 							colorInput:Disconnect()
@@ -7091,7 +7091,7 @@ function library:CreateWindow(options, ...)
 					end
 				end)
 				library.signals[1 + #library.signals] = hue.InputBegan:Connect(function(input)
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						if hueInput then
 							hueInput:Disconnect()
 						end
@@ -7106,7 +7106,7 @@ function library:CreateWindow(options, ...)
 					end
 				end)
 				library.signals[1 + #library.signals] = hue.InputEnded:Connect(function(input)
-					if hueInput and input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if hueInput and (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
 						isDraggingSomething = false
 						hueInput:Disconnect()
 					end
