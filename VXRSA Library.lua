@@ -1300,7 +1300,7 @@ do
 				Text = OptionText,
 				Callback = Callback,
 				ButtonObject = OptionIns,
-				Pressed = OptionButton.MouseButton1Click,
+				Pressed = OptionButton.Activated,
 				PressedRight = OptionButton.MouseButton2Click,
 				Activated = OptionButton.Activated,
 				TextButton = OptionButton,
@@ -1576,7 +1576,7 @@ do
 			end
 			PromptObj.Close = ClosePrompt
 			if Close then
-				Close.MouseButton1Click:Connect(((DoClose ~= true) and DoClose) or ClosePrompt)
+				Close.Activated:Connect(((DoClose ~= true) and DoClose) or ClosePrompt)
 			end
 			do
 				local NameTxt = PromptData.Name
@@ -2232,7 +2232,7 @@ function library:CreateWindow(options, ...)
 		if not homepage and newTab.LayoutOrder <= 4 then
 			homepage = goto
 		end
-		library.signals[1 + #library.signals] = newTab.MouseButton1Click:Connect(goto)
+		library.signals[1 + #library.signals] = newTab.Activated:Connect(goto)
 		if windowFunctions.tabCount == 1 then
 			tabSlider.Size = UDim2.fromOffset(newTab.AbsoluteSize.X, 1)
 			tabSlider.Position = UDim2.fromOffset(newTab.AbsolutePosition.X, newTab.AbsolutePosition.Y + newTab.AbsoluteSize.Y) - UDim2.fromOffset(main.AbsolutePosition.X, main.AbsolutePosition.Y)
@@ -2658,7 +2658,7 @@ function library:CreateWindow(options, ...)
 						end)
 						library.signals[1 + #library.signals] = receivingKey
 					end
-					library.signals[1 + #library.signals] = keybindButton.MouseButton1Click:Connect(newkey)
+					library.signals[1 + #library.signals] = keybindButton.Activated:Connect(newkey)
 					if kbpresscallback and not justBinded then
 						library.signals[1 + #library.signals] = userInputService.InputBegan:Connect(function(key, chatting)
 							chatting = chatting or (userInputService:GetFocusedTextBox() and true)
@@ -2804,7 +2804,7 @@ function library:CreateWindow(options, ...)
 					tabFunctions.Flags[kbflag], sectionFunctions.Flags[kbflag], elements[kbflag] = objectdata, objectdata, objectdata
 				end
 				sectionFunctions:Update()
-				library.signals[1 + #library.signals] = toggleButton.MouseButton1Click:Connect(function()
+				library.signals[1 + #library.signals] = toggleButton.Activated:Connect(function()
 					if not library.colorpicker and not submenuOpen and not lockedup then
 						local newval = not library_flags[flagName]
 						if options.Condition ~= nil then
@@ -3088,7 +3088,7 @@ function library:CreateWindow(options, ...)
 					offset = offset + textsize + 6
 					sectionFunctions:Update()
 					local presses = 0
-					library.signals[1 + #library.signals] = realButton.MouseButton1Click:Connect(function()
+					library.signals[1 + #library.signals] = realButton.Activated:Connect(function()
 						if lockedup then
 							return
 						end
@@ -3752,7 +3752,7 @@ function library:CreateWindow(options, ...)
 					end)
 					library.signals[1 + #library.signals] = receivingKey
 				end
-				library.signals[1 + #library.signals] = keybindButton.MouseButton1Click:Connect(newkey)
+				library.signals[1 + #library.signals] = keybindButton.Activated:Connect(newkey)
 				library.signals[1 + #library.signals] = newKeybind.InputEnded:Connect(function(input)
 					if not library.colorpicker and not submenuOpen and input.UserInputType == Enum.UserInputType.MouseButton1 then
 						newkey()
@@ -4657,7 +4657,7 @@ function library:CreateWindow(options, ...)
 							optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
 							optionButton.TextSize = 14
 							optionButton.TextXAlignment = Enum.TextXAlignment.Left
-							library.signals[1 + #library.signals] = optionButton[(multiselect and "MouseButton1Click") or "MouseButton1Down"]:Connect(function()
+							library.signals[1 + #library.signals] = optionButton[(multiselect and "Activated") or "MouseButton1Down"]:Connect(function()
 								if not library.colorpicker then
 									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
 									restorezindex[newSection] = restorezindex[newSection] or newSection.ZIndex
@@ -4933,7 +4933,7 @@ function library:CreateWindow(options, ...)
 						SetupValidation()
 					end
 				end
-				library.signals[1 + #library.signals] = dropdownToggle.MouseButton1Click:Connect(function()
+				library.signals[1 + #library.signals] = dropdownToggle.Activated:Connect(function()
 					showing = not showing
 					display(showing)
 				end)
@@ -5778,7 +5778,7 @@ function library:CreateWindow(options, ...)
 							offset = offset + textsize + 6
 							sectionFunctions:Update()
 							local presses = 0
-							library.signals[1 + #library.signals] = realButton.MouseButton1Click:Connect(function()
+							library.signals[1 + #library.signals] = realButton.Activated:Connect(function()
 								if not library.colorpicker and not submenuOpen then
 									presses = 1 + presses
 									task.spawn(callback, presses)
@@ -6287,7 +6287,7 @@ function library:CreateWindow(options, ...)
 						optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
 						optionButton.TextSize = 14
 						optionButton.TextXAlignment = Enum.TextXAlignment.Left
-						library.signals[1 + #library.signals] = optionButton.MouseButton1Click:Connect(function()
+						library.signals[1 + #library.signals] = optionButton.Activated:Connect(function()
 							if not library.colorpicker then
 								restorezindex[newSection] = restorezindex[newSection] or newSection.ZIndex
 								restorezindex[newDropdown] = restorezindex[newDropdown] or newDropdown.ZIndex
@@ -6500,7 +6500,7 @@ function library:CreateWindow(options, ...)
 						}):Play()
 					end
 				end)
-				library.signals[1 + #library.signals] = dropdownToggle.MouseButton1Click:Connect(function()
+				library.signals[1 + #library.signals] = dropdownToggle.Activated:Connect(function()
 					if not library.colorpicker then
 						showing = not showing
 						display(showing)
@@ -6774,7 +6774,7 @@ function library:CreateWindow(options, ...)
 						task.spawn(callback, newColor, last_vv, rainbsow)
 					end
 				end
-				library.signals[1 + #library.signals] = colorPickerButton.MouseButton1Click:Connect(function()
+				library.signals[1 + #library.signals] = colorPickerButton.Activated:Connect(function()
 					if submenuOpen == colorPicker or submenuOpen == nil then
 						colorPickerEnabled = not colorPickerEnabled
 						library.colorpicker = colorPickerEnabled
@@ -7028,13 +7028,13 @@ function library:CreateWindow(options, ...)
 					end
 					UpdateColorPicker(library_flags[flagName])
 				end
-				library.signals[1 + #library.signals] = randomColorButton.MouseButton1Click:Connect(function()
+				library.signals[1 + #library.signals] = randomColorButton.Activated:Connect(function()
 					if rainbowColorMode then
 						setrainbow(false)
 					end
 					UpdateColorPicker(Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)))
 				end)
-				library.signals[1 + #library.signals] = rainbowButton.MouseButton1Click:Connect(setrainbow)
+				library.signals[1 + #library.signals] = rainbowButton.Activated:Connect(setrainbow)
 				sectionFunctions:Update()
 				library.signals[1 + #library.signals] = newColorPicker.MouseEnter:Connect(function()
 					tweenService:Create(colorPicker, TweenInfo.new(0.25, library.configuration.easingStyle, library.configuration.easingDirection), {
