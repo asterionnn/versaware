@@ -2135,7 +2135,7 @@ function library:CreateWindow(options, ...)
 				lasthidebing = nil
 			end
 		end)
-		mobile.Activated:Connect(function()
+		mobileButton.Activated:Connect(function()
 			if not lasthidebing or ((os_clock() - lasthidebing) > 12) then
 				main.Visible = not main.Visible
 			end
