@@ -1968,7 +1968,8 @@ function library:CreateWindow(options, ...)
 	end
 	local vxrsaLibrary = Instance_new("ScreenGui")
 	library.MainScreenGui, MainScreenGui = vxrsaLibrary, vxrsaLibrary
-	local mobile = Instance_new("ImageButton")
+	local mobile = Instance_new("Frame")
+	local mobileButton = Instance_new("ImageButton")
 	local main = Instance_new("Frame")
 	local mainBorder = Instance_new("Frame")
 	local tabSlider = Instance_new("Frame")
@@ -1993,12 +1994,23 @@ function library:CreateWindow(options, ...)
 	mobile.Name = "mobile"
 	mobile.Parent = vxrsaLibrary
 	mobile.AnchorPoint = Vector2.new(0.5, 0.5)
-	mobile.Image = "rbxassetid://136168473876015"
+	mobile.BackgroundColor3 = library.colors.background
+	colored[1 + #colored] = {main, "BackgroundColor3", "background"}
 	mobile.BorderColor3 = library.colors.outerBorder
-	colored[1 + #colored] = {mobile, "BorderColor3", "outerBorder"}
+	colored[1 + #colored] = {main, "BorderColor3", "outerBorder"}
 	mobile.Position = UDim2.fromScale(0.5, 0.5)
 	mobile.Size = UDim2.fromOffset(75, 75)
 	makeDraggable(mobile, mobile)
+	mobileButton.Name = "button"
+	mobileButton.Image = "rbxassetid://136168473876015"
+	mobileButton.Parent = mobile
+	mobileButton.AnchorPoint = Vector2.new(0.5, 0.5)
+	mobileButton.BackgroundColor3 = library.colors.background
+	colored[1 + #colored] = {main, "BackgroundColor3", "background"}
+	mobileButton.BorderColor3 = library.colors.outerBorder
+	colored[1 + #colored] = {main, "BorderColor3", "outerBorder"}
+	mobileButton.Position = UDim2.fromScale(0.5, 0.5)
+	mobileButton.Size = UDim2.fromScale(1, 1)
 	main.Name = "main"
 	main.Parent = vxrsaLibrary
 	main.AnchorPoint = Vector2.new(0.5, 0.5)
