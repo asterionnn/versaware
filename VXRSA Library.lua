@@ -1999,7 +1999,7 @@ function library:CreateWindow(options, ...)
 	mobileButton.BorderColor3 = library.colors.outerBorder
 	colored[1 + #colored] = {main, "BorderColor3", "outerBorder"}
 	mobileButton.Position = UDim2.fromScale(0.5, 0.5)
-	mobileButton.Size = UDim2.fromOffset(75, 75)
+	mobileButton.Size = UDim2.fromOffset(50, 50)
 	mobileButton.ZIndex = 2
 	makeDraggable(mobileButton, mobileButton)
 	main.Name = "main"
