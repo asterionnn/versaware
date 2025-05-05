@@ -6194,6 +6194,7 @@ function library:CreateWindow(options, ...)
 						end
 					end
 					local proceed = #cloned ~= #dat
+					local options = tostring(table.concat(selectedOption, ","))
 					table.clear(selectedOption)
 					for k, v in next, dat do
 						selectedOption[k] = v
@@ -6201,7 +6202,7 @@ function library:CreateWindow(options, ...)
 							proceed = 1
 						end
 					end
-					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
+					dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or options or (multiselect and tostring(blankstring or tostring(table.concat(selectedOption,","))))
 					if proceed and callback then
 						task.spawn(callback, selectedOption, cloned)
 					end
@@ -6219,7 +6220,7 @@ function library:CreateWindow(options, ...)
 					if options.Location then
 						options.Location[options.LocationFlag or flagName] = str
 					end
-					local sstr = (selectedOption and tostring(selectedOption)) or blankstring or "No Blank String"
+					local sstr = (multiselect and tostring(blankstring or tostring(table.concat(selectedOption,",")))) or (selectedOption and tostring(selectedOption)) or blankstring or "No Blank String"
 					if dropdownSelection.Text ~= sstr then
 						dropdownSelection.Text = sstr
 					end
@@ -6324,7 +6325,7 @@ function library:CreateWindow(options, ...)
 									newOption.BackgroundColor3 = (togged and library.colors.selectedOption) or library.colors.topGradient
 									newOption.ImageColor3 = (togged and library.colors.unselectedOption) or library.colors.bottomGradient
 									optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
-									dropdownSelection.Text = (blankstring or tostring(table.concat(selectedOption,",")))
+									dropdownSelection.Text = (passed_multiselect == "string" and multiselect) or tostring(blankstring or tostring(table.concat(selectedOption,",")))
 									if callback then
 										task.spawn(callback, selectedOption, cloned)
 									end
@@ -6529,7 +6530,7 @@ function library:CreateWindow(options, ...)
 				local default = library_flags[flagName]
 				function update()
 					dropdownName, callback = options.Name or dropdownName, options.Callback
-					local sstr = (passed_multiselect == "string" and multiselect) or (library_flags[flagName] and tostring(library_flags[flagName])) or (selectedOption and tostring(selectedOption)) or blankstring or "nil"
+					local sstr = (passed_multiselect == "string" and multiselect) or (library_flags[flagName] and tostring(library_flags[flagName])) or (multiselect and tostring(blankstring or tostring(table.concat(selectedOption,",")))) or (selectedOption and tostring(table.concat(selectedOption, ","))) or blankstring or "nil"
 					if dropdownSelection.Text ~= sstr then
 						dropdownSelection.Text = sstr
 					end
