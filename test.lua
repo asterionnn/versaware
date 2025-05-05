@@ -6324,7 +6324,7 @@ function library:CreateWindow(options, ...)
 									newOption.BackgroundColor3 = (togged and library.colors.selectedOption) or library.colors.topGradient
 									newOption.ImageColor3 = (togged and library.colors.unselectedOption) or library.colors.bottomGradient
 									optionButton.TextColor3 = (togged and library.colors.main) or library.colors.otherElementText
-									dropdownSelection.Text = (blankstring or tostring(table.concat(selectedOption,",")))
+									dropdownSelection.Text = (blankstring or tostring(table.concat(optionsTable,",")))
 									if callback then
 										task.spawn(callback, selectedOption, cloned)
 									end
